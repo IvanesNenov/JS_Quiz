@@ -9,3 +9,12 @@ border:  1px solid #fff;
     background: rgba(255, 255,255,.2);
     transition: background .3s ease-in-out;
 }
+
+.AnswerItem.success {
+    /*border: 2px solid green;*/
+    background: rgba(160, 245, 160, .7);
+}
+.AnswerItem.error {
+    /*border: 2px solid red;*/
+    background: rgba(245, 160, 160, .7);
+}
