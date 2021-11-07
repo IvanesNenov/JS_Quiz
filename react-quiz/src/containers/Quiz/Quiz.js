@@ -31,6 +31,17 @@ class Quiz extends Component {
                     {text: '1703', id: 3},
                     {text: '1705', id: 4},
                 ]
+            },
+            {
+                id: 2,
+                question: 'Почему обиделась Настя?',
+                rightAnswerId: 4,
+                answers: [
+                    {text: 'Сам виноват', id: 1},
+                    {text: 'Надо было раньше приехать', id: 2},
+                    {text: 'Не купили квартиру', id: 3},
+                    {text: 'Все вместе взятое', id: 4},
+                ]
             }
         ]
     }
@@ -46,8 +57,8 @@ class Quiz extends Component {
         const results = this.state.results
         const question = this.state.quiz[this.state.activeQuestion]
         if (question.rightAnswerId === answerId) {
-            if (!results[answerId]) {
-                results[answerId] = 'success'
+            if (!results[question.id]) {
+                results[question.id] = 'success'
             }
             this.setState({
                 answerState: {[answerId]: 'success'},
@@ -65,9 +76,9 @@ class Quiz extends Component {
                     })
                 }
                 window.clearTimeout(timeout)
-            }, 1000)
+            }, 500)
         } else {
-            results[answerId] = 'error'
+            results[question.id] = 'error'
             this.setState({
                 answerState: {[answerId]: 'error'},
                 results: results
@@ -81,6 +92,15 @@ class Quiz extends Component {
         }
     }
 
+    restartQuizHandler = () => {
+        this.setState({
+            results: {}, // { [id] : 'success', 'error'}
+            isFinished: false,
+            activeQuestion: 0,
+            answerState: null, //{[id]: 'success' 'error'}
+        })
+    }
+
     render() {
         return (
             <div className={classes.Quiz}>
@@ -90,6 +110,7 @@ class Quiz extends Component {
                         <FinishedQuiz
                             results={this.state.results}
                             quiz={this.state.quiz}
+                            restartQuiz={this.restartQuizHandler}
                         />
                         :
 
