@@ -4,7 +4,7 @@ position: fixed;
     left: 40px;
     font-size: 20px;
     cursor:pointer;
-    color:#caf;
+    color:#fff;
     transition: opacity,left  .22s ease-out;
     z-index: 100;
 }
